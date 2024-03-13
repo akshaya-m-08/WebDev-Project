@@ -20,9 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']): '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
 
-    $filter = ['student_email' => $student_email, 'student_password' => $student_password];
-    $result = $database->$collectionName->findOne($filter);
+    $hashed_password = password_hash($student_password, PASSWORD_DEFAULT);
 
+    $filter = ['student_email' => $student_email, 'student_password' => $hashed_password];
+    $result = $database->$collectionName->findOne($filter);
 
     if ($result !== null) {
         die(json_encode(array('status' => true)));
