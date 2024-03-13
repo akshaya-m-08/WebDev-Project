@@ -1,6 +1,5 @@
 <?php
 
-
 // Start Redis session handler
 ini_set('session.save_handler', 'redis');
 ini_set('session.save_path', 'tcp://127.0.0.1:6379');
@@ -35,21 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     } 
     else 
     {
+    
+        $hashed_password = password_hash($student_password, PASSWORD_DEFAULT);
+        
         $sql = "INSERT INTO student (student_name, student_password, student_email, student_number, student_dob) 
                 VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('sssis', $student_name, $student_password, $student_email, $student_number, $student_dob);
+        $stmt->bind_param('sssis', $student_name, $hashed_password, $student_email, $student_number, $student_dob);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) 
         {
-            // Data inserted into MySQL, now copy it to MongoDB for Profile page handling
             include "mongo_db.php";
             
             $data = array
             (
                 'student_name' => $student_name,
-                'student_password' => $student_password,
+                'student_password' => $hashed_password,
                 'student_email' => $student_email,
                 'student_number' => $student_number,
                 'student_dob' => $student_dob
