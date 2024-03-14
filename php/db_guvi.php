@@ -9,11 +9,11 @@ $database = "ita2g6ato5l2k3my";
 $active_group = 'default';
 $query_builder = TRUE;
 
-$conn = new mysqli($servername, $username, $password, $database);
+$conn =mysqli_connect($servername, $username, $password, $database);
 
 if ($conn->connect_error) 
 {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed: " .mysqli_connect_error());
 }
 
 
