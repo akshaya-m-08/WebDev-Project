@@ -1,6 +1,6 @@
 <?php
 
-require '..\vendor\autoload.php'; 
+require '../vendor/autoload.php'; 
 
 $mongodburl = parse_url(getenv("MONGODB_URL"));
 $mongoUser = 'akshaya08';
