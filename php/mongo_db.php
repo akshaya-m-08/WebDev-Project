@@ -2,6 +2,7 @@
 
 require 'vendor/autoload.php'; 
 
+$mongodburl = parse_url(getenv("MONGODB_URL"));
 $mongoUser = 'akshaya08';
 $mongopassword = 'Abhi1%40aks';
 $mongoDBName = 'guvi';
