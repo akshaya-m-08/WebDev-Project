@@ -15,6 +15,7 @@ $(document).ready(function()
     });
     $("#update_profile").click(function(e) 
     {
+        
         e.preventDefault();
         $.ajax(
         {
@@ -26,7 +27,7 @@ $(document).ready(function()
             }
         });
     });
-    $("#logout").click(function(e)
+    $("#logout").click(function(e)  
     {
         e.preventDefault();
         window.localStorage.removeItem("student_email");

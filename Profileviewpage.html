@@ -6,13 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="CSS/profilepagestyle.css">
-
     <title>Profile-View</title>
 </head>
 <body>
-    <img src="asset/guvi.png" width="200" height="200">
+    <img src="asset/guvi.svg" class="logo">
+    <a href="#" class="home-btn" id="home"><i class="fa fa-home"></i></a>
     <div class="container">
+        <img src="asset/user.svg" class="user">
         <h2> View Profile</h2>
         <form id="submit">
             <div class="form-group">
@@ -21,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label for="student_password" class="form-label"> Password</label> 
-                <input type="password" class="form-control" id="student_password" name="student_password">
+                <input type="password" class="form-control" autocomplete="current-password" id="student_password" name="student_password">
             </div>
             <div class="form-group">
                 <label for="student_name" class="form-label">Student Name </label> 
@@ -39,9 +41,7 @@
             <button type="submit" class="btn btn-primary" name="action" id="update"></button>
         </form>
     </div>  
-    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- Custom JavaScript -->
     <script src="JS/profileview.js"></script>
 </body>
 </html>

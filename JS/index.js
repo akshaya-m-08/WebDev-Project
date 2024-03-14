@@ -12,6 +12,7 @@ $(document).ready(function()
             }
         });
     });
+    
     $("#signuplink").click(function(e) 
     {
         e.preventDefault();

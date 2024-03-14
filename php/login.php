@@ -1,7 +1,7 @@
 <?php
 
 ini_set('session.save_handler', 'redis');
-ini_set('session.save_path', 'tcp://127.0.0.1:6379');
+ini_set('session.save_path', 'tcp://default:ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU@redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
 
 session_start();
 
@@ -20,15 +20,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']): '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
 
-    $hashed_password = password_hash($student_password, PASSWORD_DEFAULT);
-
-    $filter = ['student_email' => $student_email, 'student_password' => $hashed_password];
+    $filter = ['student_email' => $student_email];
     $result = $database->$collectionName->findOne($filter);
 
     if ($result !== null) {
-        die(json_encode(array('status' => true)));
+        // Verify the entered password against the hashed password
+        if (password_verify($student_password, $result['student_password'])) {
+            // Passwords match
+            die(json_encode(array('status' => true)));
+        } else {
+            // Passwords don't match
+            die(json_encode(array('status' => false, 'msg' => "Invalid Password")));
+        }
     } else {
-        die(json_encode(array('status' => false, 'msg'=>"Invalid Username or Password")));
+        // User not found
+        die(json_encode(array('status' => false, 'msg' => "Invalid Username")));
     }
 }
 ?>

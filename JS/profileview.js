@@ -34,7 +34,8 @@ $(document).ready(function ()
               data: 
               {
                 Profile : true,
-                student_email: student_email_value
+                student_email: student_email_value,
+                student_password : student_password.val()
               },
               success: function (response) 
               {
@@ -51,6 +52,7 @@ $(document).ready(function ()
                   else 
                   {
                       $('#notification').html(data.error);
+                      update.html("Go Back");
                       console.log(error);
                   }
               },
@@ -59,12 +61,13 @@ $(document).ready(function ()
                     if (xhr.responseText) 
                     {
                         $('#notification').html(xhr.responseText); 
+                        update.html("Go Back");  
                     } 
                     else
                     {
                         $("#notification").html("Error: Something Went Wrong");
-                        console.log(error);
                         update.html("Go Back");
+                        console.log(error);
                     }
                 },
             });
@@ -82,4 +85,10 @@ $(document).ready(function ()
             window.location.replace("profile.html");
         }
     });
+
+});
+$("#home").click(function (e) 
+{
+    e.preventDefault();
+    window.location.replace("index.html");
 });

@@ -36,7 +36,8 @@ $(document).ready(function ()
               data: 
               {
                 Profile : true,
-                student_email: student_email_value
+                student_email: student_email_value,
+                student_password: student_password.val()
               },
               success: function (response) 
               {
@@ -53,6 +54,7 @@ $(document).ready(function ()
                   else 
                   {
                       $('#notification').html(data.error);
+                      update.html("Go Back"); 
                       console.log("error");
                   }
               },
@@ -81,8 +83,9 @@ $(document).ready(function ()
                     update : true,
                     student_name: student_name.val(),
                     student_number: student_number.val(),
-                    student_email: student_email.val(),
+                    student_email: student_email_value,
                     student_dob: student_dob.val(),
+                    student_password : student_password.val()
                 },
                 success: function (response) 
                 {
@@ -90,7 +93,9 @@ $(document).ready(function ()
                     if (data.status) {
                         $('#notification').html("Updated Successfully")
                         update.html("Go Back");
-                    } else {
+                    } 
+                    else 
+                    {
                         $('#notification').html(data.error);
                         console.log(data.status);
                         update.html("Go Back");
@@ -101,6 +106,7 @@ $(document).ready(function ()
                     if (xhr.responseText) 
                     {
                         $('#notification').html(xhr.responseText); 
+                        update.html("Go Back");  
                     } 
                     else
                     {
@@ -125,5 +131,10 @@ $(document).ready(function ()
             window.location.replace("profile.html");
         }
     });   
-});
 
+});
+$("#home").click(function (e) 
+{
+    e.preventDefault();
+    window.location.replace("index.html");
+});
