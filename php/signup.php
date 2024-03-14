@@ -1,8 +1,9 @@
 <?php
 
 ini_set('session.save_handler', 'redis');
-ini_set('session.save_path', 'tcp://default:ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU@redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
+ini_set('session.save_path', 'tcp://redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
 session_start();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {    
     function validate($data) 
@@ -17,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']) : '';
     $student_number = isset($_POST['student_number']) ? validate($_POST['student_number']) : '';
     $student_dob = isset($_POST['student_dob']) ? validate($_POST['student_dob']) : '';
+
+    $_SESSION['student_email'] = $student_email;
 
     include "db_guvi.php";
 
@@ -72,4 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         }
     }
 }
+
+
 ?>

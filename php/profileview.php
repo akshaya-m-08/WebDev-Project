@@ -1,7 +1,6 @@
 <?php
 
-ini_set('session.save_handler', 'redis');
-ini_set('session.save_path', 'tcp://default:ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU@redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     if (isset($_POST['Profile'])) 
@@ -39,4 +38,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         
     }
 }
+
 ?>

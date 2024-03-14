@@ -1,9 +1,10 @@
 <?php
 
 ini_set('session.save_handler', 'redis');
-ini_set('session.save_path', 'tcp://default:ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU@redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
+ini_set('session.save_path', 'tcp://redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
 
 session_start();
+
 
 include "mongo_db.php";
 
@@ -19,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']): '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
+
+    $_SESSION['student_email'] = $student_email;
 
     $filter = ['student_email' => $student_email];
     $result = $database->$collectionName->findOne($filter);
@@ -37,4 +40,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         die(json_encode(array('status' => false, 'msg' => "Invalid Username")));
     }
 }
+
 ?>
