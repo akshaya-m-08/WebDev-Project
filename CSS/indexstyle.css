@@ -1,4 +1,4 @@
-.btn-primary
+a.btn-primary
 {
     width: 20%;
     background-color: rgb(25, 146, 63);
@@ -12,7 +12,7 @@
     font-size: xx-large;
     margin-bottom: 10px; 
 }
-.btn-primary:hover
+a.btn-primary:hover
 {
     border-radius:5px;
     background-color: rgb(39, 194, 88);
