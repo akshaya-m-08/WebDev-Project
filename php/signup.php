@@ -16,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $data = htmlspecialchars($data);
         return $data;
     }
+
+
     $student_name = isset($_POST['student_name']) ? validate($_POST['student_name']) : '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']) : '';
@@ -38,6 +40,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     } 
     else 
     {
+        if (!preg_match('/[0-9]/', $student_password))
+        {
+            die(json_encode(array('status' => false, "msg" => "Password must contain at least one digit")));
+        }
+        else if (!preg_match('/[A-Z]/', $student_password))
+        {
+            die(json_encode(array('status' => false, "msg" => "Password must contain at least one Capital letter")));
+        } 
+        else if (!preg_match('/[!@#$%&*()]/', $student_password))
+        {
+            die(json_encode(array('status' => false, "msg" => "Password must contain at least either one symbol(!@#$%&*()) ")));
+        }
+        else if (strlen($student_password) < 8)
+        {
+            die(json_encode(array('status' => false, "msg" => "Password must be 8 character long")));
+        }
+        else
+        {
+            die(json_encode(array('status' => false, "msg" => "Password must be 8 character long and must 
+                                                               contain at least one digit, one  captial letter letter, and one symbol")));
+        }
     
         $hashed_password = password_hash($student_password, PASSWORD_DEFAULT);
         
@@ -78,6 +101,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         }
     }
 }
-
-
 ?>
