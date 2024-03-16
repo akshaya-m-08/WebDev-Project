@@ -54,7 +54,7 @@ body
 }
 @media (max-width: 767px) {
     body {
-        background-size: contain; /* Change background size for smaller screens */
+        background-size: cover; /* Change background size for smaller screens */
     }
 }
 .logo 
