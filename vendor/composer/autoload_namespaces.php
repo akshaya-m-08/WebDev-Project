@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'LSS' => array($vendorDir . '/openlss/lib-array2xml'),
     'JsonMapper' => array($vendorDir . '/netresearch/jsonmapper/src'),
+    'Clue\\Redis\\Protocol' => array($vendorDir . '/clue/redis-protocol/src'),
 );
