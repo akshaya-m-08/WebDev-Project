@@ -1,8 +1,10 @@
 <?php
+
+session_start();
+
 include "redisconnect.php";
 
 
-session_start();
 
 
 include "mongo_db.php";
