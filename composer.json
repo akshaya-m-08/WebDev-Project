@@ -55,6 +55,7 @@
         "ext-mysqli": "*",
         "ext-openssl": "*",
         "ext-pcre": "*",
+        "ext-redis": "*",
         "ext-xml": "*",
         "composer/ca-bundle": "^1.2",
         "google/recaptcha": "^1.1",
