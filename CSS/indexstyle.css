@@ -1,19 +1,17 @@
-a.btn-primary
+a
 {
-    width: 50%;
+    width: 20%;
     background-color: rgb(25, 146, 63);
     color: white;
     padding: 14px 20px;
-    margin: 0 auto;
     border:none;
     border-radius: 4px;
     cursor:pointer;
     text-align: center;
     font-size: xx-large;
-    margin-bottom: 10px; 
-    display:block;
+    margin:  20px; 
 }
-a.btn-primary:hover
+a:hover
 {
     border-radius:5px;
     background-color: rgb(39, 194, 88);
@@ -43,9 +41,7 @@ h2
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     align-items: center;
-    text-align: center;
     justify-content: center;
-    display: block;
 }
 body 
 {
@@ -63,4 +59,8 @@ body
     left: 0; 
     top: 100px; 
     transform: translateY(-50%); 
+}
+div.col-xs-12
+{
+    text-align: center;
 }
