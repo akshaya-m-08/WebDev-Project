@@ -40,26 +40,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     } 
     else 
     {
+ 
         if (!preg_match('/[0-9]/', $student_password))
         {
             die(json_encode(array('status' => false, "msg" => "Password must contain at least one digit")));
         }
         else if (!preg_match('/[A-Z]/', $student_password))
         {
-            die(json_encode(array('status' => false, "msg" => "Password must contain at least one Capital letter")));
+            die(json_encode(array('status' => false, "msg" => "Password must contain at least one capital letter")));
         } 
-        else if (!preg_match('/[!@#$%&*()]/', $student_password))
+        else if (!preg_match('/[!@#$%^&*()\-_=+{};:,<.>]/', $student_password))
         {
-            die(json_encode(array('status' => false, "msg" => "Password must contain at least either one symbol(!@#$%&*()) ")));
+            die(json_encode(array('status' => false, "msg" => "Password must contain at least one symbol")));
         }
-        else if (strlen($student_password) < 8)
+        else if (strlen($student_password) < 8 || strlen($student_password) > 15)
         {
-            die(json_encode(array('status' => false, "msg" => "Password must be 8 character long")));
-        }
-        else
-        {
-            die(json_encode(array('status' => false, "msg" => "Password must be 8 character long and must 
-                                                               contain at least one digit, one  captial letter letter, and one symbol")));
+            die(json_encode(array('status' => false, "msg" => "Password must be between 8 and 15 characters long")));
         }
     
         $hashed_password = password_hash($student_password, PASSWORD_DEFAULT);
