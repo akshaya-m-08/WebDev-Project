@@ -47,10 +47,15 @@ h2
 body 
 {
     background-image: url('../asset/bg1.svg'); 
-    background-size: 100% 100%;
+    background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center; 
     font-family: Calibri;
+}
+@media (max-width: 767px) {
+    body {
+        background-size: contain; /* Change background size for smaller screens */
+    }
 }
 .logo 
 {
