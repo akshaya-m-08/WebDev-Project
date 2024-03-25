@@ -71,15 +71,16 @@ $(document).ready(function()
             }
         });
     });
+    $("#logout").click(function (e) 
+    {
+        e.preventDefault();
+        window.location.replace("index.html");
+    });
+    history.pushState(null, null, 'profile.html');
+    window.addEventListener('popstate', function(event) 
+    {
+        history.pushState(null, null, 'profile.html');
+    });
+
 });
 
-$("#logout").click(function (e) 
-{
-    e.preventDefault();
-    window.location.replace("index.html");
-});
-window.addEventListener('popstate', function(event) 
-{
-        window.history.back();
-    
-});

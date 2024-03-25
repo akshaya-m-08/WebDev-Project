@@ -97,9 +97,9 @@ $(document).ready(function()
             }
         });
     });
+    history.pushState(null, null, 'index.html');
     window.addEventListener('popstate', function(event) 
     {
-            window.history.back();
-        
+        history.pushState(null, null, 'index.html');
     });
 });
