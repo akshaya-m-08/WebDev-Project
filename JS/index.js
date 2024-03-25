@@ -8,25 +8,7 @@ $(document).ready(function()
         $("#home, #about, #courses, #studentlogin").removeClass("active-tab");
     }
     
-    $(document).on('click', '.toggle-password', function() {
-        $(this).toggleClass('fa-eye fa-eye-slash');
-        var input = $($(this).attr('toggle'));
-        if (input.attr('type') === 'password') {
-            input.attr('type', 'text');
-        } else {
-            input.attr('type', 'password');
-        }
-    });
-
-    $(document).on('click', '.signupcard .toggle-password', function() {
-        $(this).toggleClass('fa-eye fa-eye-slash');
-        var input = $($(this).attr('toggle'));
-        if (input.attr('type') === 'password') {
-            input.attr('type', 'text');
-        } else {
-            input.attr('type', 'password');
-        }
-    });
+    
 
     $.ajax({
         url: 'home.html',
