@@ -42,3 +42,25 @@ a.right.carousel-control
 	color: black; 
     border-radius: 50px 50px 0 0;
 }
+@media (max-width: 952px)
+{
+    .carousel,
+    .item,
+    .card 
+    {
+        height: 300px;
+        width: 800px;
+    }
+
+}
+@media (max-width: 858px)
+{
+    .carousel,
+    .item,
+    .card 
+    {
+        height: 200px;
+        width: 500px;
+    }
+
+}

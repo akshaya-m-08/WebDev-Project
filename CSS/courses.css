@@ -31,3 +31,24 @@ img
     width: 200px;
     height: 200px; 
 }
+@media (max-width: 952px)
+{
+    .card,
+    img
+    {
+        width: 100px;
+        height: 100px; 
+    }
+
+}
+@media (max-width: 858px)
+{
+    .card,
+    img
+    {
+        width: 60px;
+        height: 60px; 
+    }
+
+
+}

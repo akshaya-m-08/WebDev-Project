@@ -100,3 +100,20 @@ input[type=address].form-control
 {
     background-color:  rgb(67, 210, 112);
 }
+@media (max-width: 952px)
+{
+    .card
+    {
+        width: 300px;
+        height: 400px;
+    }
+}
+@media (max-width: 858px)
+{
+    .card
+    {
+        width: 300px;
+        height: 400px;
+    }
+
+}
