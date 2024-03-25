@@ -29,13 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $student_dob = isset($_POST['student_dob']) ? validate($_POST['student_dob']) : '';
     $student_address = isset($_POST['student_address']) ? $_POST['student_address'] : '';
 
-    if (isset($_SESSION['student_email'])) 
-    {
-
-        die(json_encode(array('status' => false, 'msg' => 'You are already logged in', 'redirect' => '../profile.html')));
-    }
     
-    $_SESSION['student_email'] = $student_email;
 
     include "db_guvi.php";
 
@@ -84,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
             if ($insert->getInsertedCount() == 1) 
             {   
+                $_SESSION['student_email'] = $student_email;
                 die(json_encode(array('status' => true)));
             }
             else

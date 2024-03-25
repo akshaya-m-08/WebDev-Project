@@ -7,12 +7,6 @@ ini_set('session.save_path', 'tcp://redis-17411.c16.us-east-1-3.ec2.cloud.redisl
 
 session_start();
 
-if (isset($_SESSION['student_email'])) 
-{
-    header("Location: html/profile.html");
-    exit();
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     header('Access-Control-Allow-Origin: *');
@@ -28,9 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']): '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
-
-    $_SESSION['student_email'] = $student_email;
-
+    
     $selectcollection = $database->selectCollection('students');
     $result = $selectcollection->findOne(['student_email' => $student_email]);
 
@@ -39,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         if (password_verify($student_password, $result['student_password'])) 
         {
             // Passwords match
+            session_regenerate_id(true); 
+            $_SESSION['student_email'] = $student_email;
             die(json_encode(array('status' => true, 'student_name' => $result["student_name"])));
         } else {
             // Passwords don't match
@@ -49,6 +43,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         die(json_encode(array('status' => false, 'msg' => "Invalid Username")));
     }
 }
-header("Location: index.html");
-exit();
 ?>

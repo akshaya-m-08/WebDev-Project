@@ -11,3 +11,8 @@ $(document).ready(function(){
         setTimeout(autoplay, 4500);
     }
 });
+window.addEventListener('popstate', function(event) 
+{
+        window.history.back();
+    
+});

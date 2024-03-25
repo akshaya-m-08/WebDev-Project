@@ -128,4 +128,9 @@ $(document).ready(function ()
         e.preventDefault();
         window.location.replace("index.html");
     });
+    window.addEventListener('popstate', function(event) 
+    {
+            window.history.back();
+        
+    });
 });

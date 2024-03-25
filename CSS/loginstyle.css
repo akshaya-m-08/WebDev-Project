@@ -162,7 +162,7 @@ input[type=date]::placeholder
 }
 .login-card .fa
 {
-    position: absolute; 
+    position: fixed; 
     top: 38%; 
     transform: translateY(-50%); 
     right: 55px;
@@ -171,7 +171,7 @@ input[type=date]::placeholder
 }
 .signup-card .fa
 {
-    position: absolute; 
+    position: fixed; 
     top: 62%; 
     transform: translateY(-50%); 
     right: 55px;
@@ -228,6 +228,10 @@ input[type=date]::placeholder
         width: 300px;
         height: 400px;
     }
+    .signup-card .fa
+    {
+    top: 68%; 
+    }
 }
 @media (max-width: 858px)
 {
@@ -236,5 +240,9 @@ input[type=date]::placeholder
         width: 300px;
         height: 400px;
     }
-
+    .signup-card .fa
+    {
+    top: 68%; 
+    }
 }
+
