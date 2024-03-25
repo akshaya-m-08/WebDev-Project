@@ -74,6 +74,8 @@ $(document).ready(function()
     $("#logout").click(function (e) 
     {
         e.preventDefault();
+        window.history.replaceState({}, document.title, "/");
+        localStorage.clear(); 
         window.location.replace("index.html");
     });
     history.pushState(null, null, 'profile.html');

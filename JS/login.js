@@ -1,6 +1,6 @@
 $(document).ready(function () 
 {
-        
+    window.history.replaceState({}, document.title, "/");    
     $("#login").submit(function(e) 
     {
 
