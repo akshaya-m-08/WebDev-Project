@@ -1,36 +1,80 @@
 $(document).ready(function() 
 {
-    $("#view_profile").click(function(e) 
+    function setNavFlex() {
+        $('nav').css('display', 'flex');
+    }
+
+    function removeActiveClass() {
+        $("#home, #courses, #myprofile").removeClass("active-tab");
+    }
+
+    $.ajax({
+        url: 'profilehome.html',
+        success: function(response) {
+            console.log("Home page loaded successfully");
+            $('#maincontent').html(response);
+            var studentName = window.localStorage.getItem("student_name");
+            $('#studentname').text(studentName);
+            $("#home").addClass("active");
+            setNavFlex(); 
+            removeActiveClass();
+
+        }
+    });
+
+    $("#home").click(function(e) 
     {
         e.preventDefault();
-        $.ajax(
+        var $this = $(this);
+        $.ajax (
         {
-            url: 'Profileviewpage.html', 
-            type: 'GET', 
+            url: 'profilehome.html', 
             success: function(response) 
             {
-                $('body').html(response);
+                console.log("Home page loaded successfully");
+                $('#maincontent').html(response);
+                var studentName = window.localStorage.getItem("student_name");
+                $('#studentname').text(studentName);
+                $(this).addClass("active");
+                setNavFlex(); 
+                removeActiveClass();
             }
         });
     });
-    $("#update_profile").click(function(e) 
+    $("#myprofile").click(function(e) 
     {
-        
         e.preventDefault();
-        $.ajax(
+        var $this = $(this);
+        $.ajax (
         {
-            url: 'profileupdatepage.html', 
-            type: 'GET', 
+            url: 'myprofile.html', 
             success: function(response) 
             {
-                $('body').html(response);
+                console.log("myprofile page loaded successfully");
+                $('#maincontent').html(response);
+                setNavFlex(); 
+                $(this).addClass("active");
+                removeActiveClass();
             }
         });
     });
-    $("#logout").click(function(e)  
-    {
+    $("#courses").click(function(e) {
         e.preventDefault();
-        window.localStorage.removeItem("student_email");
-        window.location.replace("index.html");
+        $.ajax({
+            url: 'mycourses.html',
+            success: function(response) {
+                console.log("Courses page loaded successfully");
+                $('#maincontent').html(response);
+                setNavFlex(); 
+                $(this).addClass("active");
+                removeActiveClass();
+            }
+        });
     });
+});
+
+$("#logout").click(function (e) 
+{
+    e.preventDefault();
+    window.location.replace("index.html");
 });

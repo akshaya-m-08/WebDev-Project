@@ -1,16 +1,23 @@
 <?php
 include "redisconnect.php";
+include "mongo_db.php";
 
 ini_set('session.save_handler', 'redis');
 ini_set('session.save_path', 'tcp://redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
 
 session_start();
 
-
-include "mongo_db.php";
+if (isset($_SESSION['student_email'])) 
+{
+    header("Location: profile.html");
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+    header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
     function validate($data) 
     {
         $data = trim($data);
@@ -24,14 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $_SESSION['student_email'] = $student_email;
 
-    $filter = ['student_email' => $student_email];
-    $result = $database->$collectionName->findOne($filter);
+    $selectcollection = $database->selectCollection('students');
+    $result = $selectcollection->findOne(['student_email' => $student_email]);
 
     if ($result !== null) {
         // Verify the entered password against the hashed password
-        if (password_verify($student_password, $result['student_password'])) {
+        if (password_verify($student_password, $result['student_password'])) 
+        {
             // Passwords match
-            die(json_encode(array('status' => true)));
+            die(json_encode(array('status' => true, 'student_name' => $result["student_name"])));
         } else {
             // Passwords don't match
             die(json_encode(array('status' => false, 'msg' => "Invalid Password")));
@@ -41,5 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         die(json_encode(array('status' => false, 'msg' => "Invalid Username")));
     }
 }
-
+header("Location: index.html");
+exit();
 ?>

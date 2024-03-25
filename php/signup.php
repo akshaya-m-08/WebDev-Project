@@ -8,7 +8,11 @@ ini_set('session.save_path', 'tcp://redis-17411.c16.us-east-1-3.ec2.cloud.redisl
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+
 {    
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+    header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
     function validate($data) 
     {
         $data = trim($data);
@@ -23,7 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']) : '';
     $student_number = isset($_POST['student_number']) ? validate($_POST['student_number']) : '';
     $student_dob = isset($_POST['student_dob']) ? validate($_POST['student_dob']) : '';
+    $student_address = isset($_POST['student_address']) ? $_POST['student_address'] : '';
 
+    if (isset($_SESSION['student_email'])) 
+    {
+
+        die(json_encode(array('status' => false, 'msg' => 'You are already logged in', 'redirect' => '../profile.html')));
+    }
+    
     $_SESSION['student_email'] = $student_email;
 
     include "db_guvi.php";
@@ -41,21 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     else 
     {
  
-        if (!preg_match('/[0-9]/', $student_password))
+        if (!preg_match('/^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+{};:,<.>]).{8,15}$/', $student_password)) 
         {
-            die(json_encode(array('status' => false, "msg" => "Password must contain at least one digit")));
-        }
-        else if (!preg_match('/[A-Z]/', $student_password))
-        {
-            die(json_encode(array('status' => false, "msg" => "Password must contain at least one capital letter")));
-        } 
-        else if (!preg_match('/[!@#$%^&*()\-_=+{};:,<.>]/', $student_password))
-        {
-            die(json_encode(array('status' => false, "msg" => "Password must contain at least one symbol")));
-        }
-        else if (strlen($student_password) < 8 || strlen($student_password) > 15)
-        {
-            die(json_encode(array('status' => false, "msg" => "Password must be between 8 and 15 characters long")));
+            die(json_encode(array('status' => false, 'msg' => 'Password must contain a digit, a capital letter, a special character, and be 8-15 characters long')));
         }
     
         $hashed_password = password_hash($student_password, PASSWORD_DEFAULT);
@@ -76,7 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 'student_password' => $hashed_password,
                 'student_email' => $student_email,
                 'student_number' => $student_number,
-                'student_dob' => $student_dob
+                'student_dob' => $student_dob,
+                'student_address' => $student_address
             );
 
 

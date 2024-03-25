@@ -1,0 +1,102 @@
+
+.card
+{
+    width: 430px;
+    height: 600px;
+    perspective: 1500px;
+    top: 60%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(25, 93, 37, 0.5);
+    border:2px solid #ccc;;
+    align-items: center;
+}
+.label
+{
+    font-size: 19px;
+    color: rgb(25, 146, 63);
+}
+
+h2
+{
+    position:absolute;
+    font-size: 35px;
+    color: #000;
+    font-weight: bolder;
+    margin-left: 30%;
+    margin-top: 15px;
+}
+p
+{
+    font-size: 20px;
+    text-align: center;
+    margin-left: -20px;
+}
+.profile
+{
+    margin-top: 70px;
+    margin-left: 40px;
+}
+div.row::after {
+    margin-bottom: 20px; /* You can adjust the value to increase or decrease the gap */
+}
+input[type=text].form-control,
+input[type=password].form-control,
+input[type=email].form-control,
+input[type=number].form-control,
+input[type=date].form-control
+{
+    width:160%;
+    height:40px;
+    padding: 15px;
+    box-sizing: border-box;
+    color: #000;
+    border:1px solid #ccc;;
+    outline: none;
+    border-radius: 4px;
+}
+input[type=address].form-control
+{
+    width:150%;
+    height:90px;
+    padding: 15px;
+    box-sizing: border-box;
+    color: #000;
+    background-color: white;
+    border:1px solid #ccc;;
+    outline: none;
+    border-radius: 4px;
+}
+.btn-primary 
+{
+    position: absolute;
+    right: 38px;
+    width: 82%;
+    padding: 7px;
+    color: #eee;
+    background:  rgb(25, 146, 63);
+    text-align: center;
+    font-size: 18px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+    bottom: 15%;
+    margin-bottom: -80px;
+}
+.btn-primary:hover
+{
+    background-color:  rgb(67, 210, 112);
+}
+.btn-primary:active
+{
+    background-color:  rgb(67, 210, 112);
+}
+.btn-primary:focus
+{
+    background-color:  rgb(67, 210, 112);
+}

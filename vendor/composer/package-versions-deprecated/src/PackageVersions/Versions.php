@@ -90,6 +90,7 @@ final class Versions
   'symfony/var-dumper' => 'v6.4.4@b439823f04c98b84d4366c79507e9da6230944b1',
   'symfony/var-exporter' => 'v6.4.4@0bd342e24aef49fc82a21bd4eedd3e665d177e5b',
   'tedivm/stash' => 'v1.0.0@6f66c558874e476f61acb902dd11d251defc34ab',
+  'twbs/bootstrap' => 'v5.3.3@6e1f75f420f68e1d52733b8e407fc7c3766c9dba',
   'twig/twig' => 'v3.8.0@9d15f0ac07f44dc4217883ec6ae02fd555c6f71d',
   'webmozart/assert' => '1.11.0@11cb2199493b2f8a3b53e7f19068fc6aac760991',
   'williamdes/mariadb-mysql-kbs' => 'v1.2.14@d829a96ad07d79065fbc818a3bd01f2266c3890b',

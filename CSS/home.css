@@ -1,0 +1,44 @@
+.carousel
+{
+    height: 400px;
+    width: 1200px;
+	perspective: 1500px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 50px 50px 0 0;
+    box-shadow: 0 5px 15px rgba(5, 91, 36, 0.5);
+
+}
+.item,
+.card 
+{
+    height: 400px;
+    width: 1200px;
+    margin: auto;
+	background-color: transparent;
+	border-radius: 50px 50px 0 0;
+    border-bottom: 8px solid rgba(5, 91, 36, 0.5); 
+}
+.img-area 
+{
+	border-radius: 50px;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+	background-color: transparent;
+    border-radius: 50px 50px 0 0;
+}
+
+a.left.carousel-control
+a.right.carousel-control 
+{
+    top: 50%;
+    transform: translateY(-50%);
+	background-color: transparent ;
+	background-image: none;
+	color: black; 
+    border-radius: 50px 50px 0 0;
+}

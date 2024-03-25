@@ -1,0 +1,45 @@
+
+.card
+{
+    width: 600px;
+    height: 450px;
+    perspective: 1500px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+.heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+}
+
+.heading1 
+{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    text-align: center;
+    color:rgb(39, 194, 88);
+}
+p 
+{
+    text-align: center;
+    font-size: 18px;
+}
+p.guvi
+{
+    font-size: 30px;
+}
+.guvi {
+    display: inline-block;
+
+}
+.green {
+    color: green;
+}
+.black {
+    color: black;
+}

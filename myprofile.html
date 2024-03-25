@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="CSS/profileview.css">
+        <title>My Profile</title>
+    </head>
+<body>
+    <div class="card">
+        <h2> User Profile</h2>
+        <form id="profile" class="profile">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-7">
+                        <label for="student_name" class="col-form-label">Name</label>
+                        <input type="text" class="form-control" id="student_name" name="student_name"> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-7">
+                        <label for="student_email" class="col-form-label">Email</label>
+                        <input type="email" class="form-control" id="student_email" name="student_email"> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-7">
+                        <label for="student_dob" class="col-form-label">DOB</label>
+                        <input type="date" class="form-control"  id="student_dob" name="student_dob" > 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-7">
+                        <label for="student_number" class="col-form-label">Phone Number</label>
+                        <input type="number" class="form-control" id="student_number"  name="student_number" > 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-7">
+                        <label for="student_address" class="col-form-label">Address</label>
+                        <input type="text" class="form-control" id="student_address" name="student_address" > 
+                    </div>
+                </div>
+            </div>
+            <p id="notification" ></p>
+            <button type="submit" class="btn btn-primary" id="update"> Edit </button>
+        </form>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="JS/profileview.js"></script>
+</body>
+</html>
