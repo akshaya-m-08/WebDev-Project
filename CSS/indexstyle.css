@@ -73,50 +73,47 @@ nav
 {
     .logo 
     {
-        width: auto; 
-        height: auto;
+        width: 200px; 
+        height: 100px;
         margin-right: auto;
         margin-left: auto; 
         margin-bottom: 20px;
     }
     .checkbtn
     {
-      display: block;
-      float: none;
-      line-height: initial;
-      margin-right: 20px;
+      display: flex;
     }
     nav
     {
-        flex-direction: column; 
+        flex-direction: row; 
         align-items: center;
         margin-top: 20px; 
         padding: 0;
+        font-size: large;
     }
     #check:not(:checked) ~ ul  {
         display: none; /* Hide the navigation items when not checked */
     }
     #check:checked ~ ul {
-        display: flex; 
-        flex-direction: column; 
-        align-items: center;
+
+        align-items: right;
         background-color: white;
         background-size: cover; 
-        display:flex;
-        height: 100vh;
         background-repeat: no-repeat; 
         background-position: center; 
         position: fixed;
         top: 120px;
-        left: 0;
-        right: 0;
+        left: auto;
+        right: 10px;
         bottom: 0;
         padding-top: 20px;
         overflow-y: auto; 
         transition: all .5s; 
         z-index: 999; 
-        width: auto; 
-        height: auto; 
+        width: 180px; 
+        height: 300px; 
+
+        
     }
     a.nav-link:hover,
     a.nav-link:active 
