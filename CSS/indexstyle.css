@@ -100,7 +100,7 @@ nav
         display: flex; 
         flex-direction: column; 
         align-items: center;
-        background-image: url('../asset/bg1.svg');
+        background-color: white;
         background-size: cover; 
         display:flex;
         height: 100vh;
