@@ -43,3 +43,20 @@ p.guvi
 .black {
     color: black;
 }
+@media (max-width: 952px)
+{
+    .card
+    {
+        width: 500px;
+        height: 450px;
+    }
+}
+@media (max-width: 858px)
+{
+    .card
+    {
+        width: 400px;
+        height: 450px;
+    }
+
+}
