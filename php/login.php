@@ -9,7 +9,7 @@ session_start();
 
 if (isset($_SESSION['student_email'])) 
 {
-    header("Location: ../profile.html");
+    header("Location: html/profile.html");
     exit();
 }
 
