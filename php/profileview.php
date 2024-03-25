@@ -59,35 +59,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         
         $user_profile = $selectcollection->findOne(['student_email' => $student_email]);
 
-        if ($user_profile)  
-        {
-            $update_result = $selectcollection->updateOne
-            (
-                ['student_email' => $student_email],
-                ['$set' => 
-                [
-                    'student_name' => $student_name,
-                    'student_number' => $student_number,
-                    'student_dob' => $student_dob,
-                    'student_address' => $student_address
-                ]]
-            );
-
-            if ($update_result->getModifiedCount() > 0) 
+        if ($user_profile) {
+            $update_data = [];
+            if ($user_profile['student_name'] != $student_name) 
             {
-                die(json_encode(array("status" => true,'student_name' => $update_result["student_name"])));
+                $update_data['student_name'] = $student_name;
+            }
+            if ($user_profile['student_number'] != $student_number) 
+            {
+                $update_data['student_number'] = $student_number;
+            }
+            if ($user_profile['student_dob'] != $student_dob) 
+            {
+                $update_data['student_dob'] = $student_dob;
+            }
+            if ($user_profile['student_address'] != $student_address) 
+            {
+                $update_data['student_address'] = $student_address;
+            }
+    
+            if (!empty($update_data)) 
+            {
+                $update_result = $selectcollection->updateOne(
+                    ['student_email' => $student_email],
+                    ['$set' => $update_data]
+                );
+    
+                if ($update_result->getModifiedCount() > 0) {
+                    die(json_encode(["status" => true, 'student_name' => $student_name]));
+                } else {
+                    die(json_encode(["status" => false, "error" => "Profile Not Updated or Internal Error"]));
+                }
             } 
             else 
             {
-                die(json_encode(array("status" => false, "error" => "Profile Not Updated Same Data or Internal Error")));
+                die(json_encode(["status" => false, "error" => "No fields to update"]));
             }
         } 
-           
         else 
         {
-            die(json_encode(array("error" => "Profile not found or Incorrect Password ")));
+            die(json_encode(["status" => false, "error" => "Profile not found"]));
         }
     }
 }
-
 ?>
