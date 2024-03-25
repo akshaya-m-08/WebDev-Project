@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
             if ($update_result->getModifiedCount() > 0) 
             {
-                die(json_encode(array("status" => true)));
+                die(json_encode(array("status" => true,'student_name' => $update_result["student_name"])));
             } 
             else 
             {

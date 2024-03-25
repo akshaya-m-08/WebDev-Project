@@ -88,6 +88,7 @@ $(document).ready(function () {
                     var data = JSON.parse(response);
                     if (data.status) {
                         $('#notification').html("Updated Successfully");
+                        window.localStorage.setItem('student_name', data.student_name);
                         update.html("Go Back to Home");
                     } else {
                         $('#notification').html(data.error);
