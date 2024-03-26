@@ -7,17 +7,6 @@ ini_set('session.save_path', 'tcp://redis-17411.c16.us-east-1-3.ec2.cloud.redisl
 
 session_start();
 
-// Generate a unique session ID
-$sessionId = session_id();
-
-// Store session data in Redis
-$sessionData = serialize($_SESSION);
-$redis->set('session:' . $sessionId, $sessionData);
-
-// Retrieve session data from Redis
-$sessionData = $redis->get('session:' . $sessionId);
-$_SESSION = unserialize($sessionData);
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     header('Access-Control-Allow-Origin: *');
