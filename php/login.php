@@ -2,10 +2,10 @@
 include "redisconnect.php";
 include "mongo_db.php";
 
-session_start();
-
 ini_set('session.save_handler', 'redis');
 ini_set('session.save_path', 'tcp://redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
+
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
