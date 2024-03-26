@@ -78,6 +78,22 @@ $(document).ready(function()
         localStorage.clear(); 
         window.location.replace("index.html");
     });
+    document.addEventListener('DOMContentLoaded', function() 
+    {
+       
+        const checkbox = document.getElementById('check');
+        const navItems = document.querySelectorAll('ul li a');
+      
+        navItems.forEach(function(item) 
+        {
+          item.addEventListener('click', function() 
+          {
+            checkbox.checked = false;
+          });
+        });
+    });
+
+
     history.pushState(null, null, 'profile.html');
     window.addEventListener('popstate', function(event) 
     {
