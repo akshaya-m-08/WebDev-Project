@@ -1,5 +1,5 @@
 <?php
-
+include "redisconnect.php";
 include "mongo_db.php";
 
 ini_set('session.save_handler', 'redis');
