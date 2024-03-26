@@ -82,7 +82,7 @@ $(document).ready(function()
     {
        
         const checkbox = document.getElementById('check');
-        const navItems = document.querySelectorAll('ul li a');
+        const navItems = document.querySelectorAll('.nav-item');
       
         navItems.forEach(function(item) 
         {
