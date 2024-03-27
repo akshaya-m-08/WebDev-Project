@@ -1,10 +1,5 @@
 $(document).ready(function () 
 {
-    window.history.replaceState({}, document.title, "/");    
-    if (!Modernizr.inputtypes.date) 
-    {
-        $('#student_dob').attr('type', 'text').attr('placeholder', 'Enter Your DOB').datepicker();
-    }
     $("#login").submit(function(e) 
     {
         e.preventDefault();
