@@ -52,7 +52,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             die(json_encode(array('status' => false, 'msg' => 'Password must contain a digit, a capital letter, a special character, and be 8-15 characters long')));
         }
-    
+        
+        if (!preg_match('/^\d{10}$/', $student_number)) 
+        {
+            die(json_encode(array('status' => false, 'msg' => 'Enter Valid 10-digit mobile number')));
+        } 
+
+        if (!filter_var($student_email, FILTER_VALIDATE_EMAIL)) 
+        {
+            die(json_encode(array('status' => false, 'msg' => 'Enter a valid Email address')));
+        }
+
+        if (!preg_match('/^[a-zA-Z0-9._]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/', $student_email)) 
+        {
+            die(json_encode(array('status' => false, 'msg' => 'Enter a valid email address')));
+        }
+        
         $hashed_password = password_hash($student_password, PASSWORD_DEFAULT);
         
         $sql = "INSERT INTO student (student_name, student_password, student_email, student_number, student_dob) 

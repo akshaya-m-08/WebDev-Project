@@ -1,9 +1,12 @@
 $(document).ready(function () 
 {
     window.history.replaceState({}, document.title, "/");    
+    if (!Modernizr.inputtypes.date) 
+    {
+        $('#student_dob').attr('type', 'text').attr('placeholder', 'Enter Your DOB').datepicker();
+    }
     $("#login").submit(function(e) 
     {
-
         e.preventDefault();
 
         var student_email = $("#email").val();
@@ -14,7 +17,6 @@ $(document).ready(function ()
             $('#notification').text('Please fill in all fields.');
             return; 
         }
-
         $.ajax
         ({
             url: 'php/login.php',
@@ -134,4 +136,6 @@ $(document).ready(function ()
     {
         history.pushState(null, null, 'index.html');
     });
+
+
 });

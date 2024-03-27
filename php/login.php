@@ -22,24 +22,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']): '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
-    
+
     $selectcollection = $database->selectCollection('students');
     $result = $selectcollection->findOne(['student_email' => $student_email]);
 
-    if ($result !== null) {
-        // Verify the entered password against the hashed password
+    if ($result !== null) 
+    {
         if (password_verify($student_password, $result['student_password'])) 
         {
-            // Passwords match
             session_regenerate_id(true); 
             $_SESSION['student_email'] = $student_email;
             die(json_encode(array('status' => true, 'student_name' => $result["student_name"])));
-        } else {
-            // Passwords don't match
+        } 
+        else 
+        {
             die(json_encode(array('status' => false, 'msg' => "Invalid Password")));
         }
-    } else {
-        // User not found
+    } 
+    else 
+    {
         die(json_encode(array('status' => false, 'msg' => "Invalid Username")));
     }
 }
