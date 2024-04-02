@@ -1,11 +1,8 @@
 <?php
 include "redisconnect.php";
-include "mongo_db.php";
 
-ini_set('session.save_handler', 'redis');
-ini_set('session.save_path', 'tcp://redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
+include "db_guvi.php";
 
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
@@ -23,16 +20,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']): '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
 
-    $selectcollection = $database->selectCollection('students');
-    $result = $selectcollection->findOne(['student_email' => $student_email]);
+    $sql = "SELECT * FROM student WHERE student_email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $student_email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
 
-    if ($result !== null) 
+    if ($row !== null) 
     {
-        if (password_verify($student_password, $result['student_password'])) 
+        if (password_verify($student_password, $row['student_password'])) 
         {
             session_regenerate_id(true); 
-            $_SESSION['student_email'] = $student_email;
-            die(json_encode(array('status' => true, 'student_name' => $result["student_name"])));
+            $_SESSION['student_email'] = $student_email; 
+            $_SESSION['student_name'] = $row["student_name"];
+            die(json_encode(array('status' => true, 'student_name' => $row["student_name"])));
         } 
         else 
         {

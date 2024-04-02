@@ -2,12 +2,7 @@
 
 include "redisconnect.php";
 
-
-
-ini_set('session.save_handler', 'redis');
-ini_set('session.save_path', 'tcp://redis-17411.c16.us-east-1-3.ec2.cloud.redislabs.com:17411?auth=ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU');
-
-session_start();
+include "db_guvi.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 
@@ -30,10 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $student_number = isset($_POST['student_number']) ? validate($_POST['student_number']) : '';
     $student_dob = isset($_POST['student_dob']) ? validate($_POST['student_dob']) : '';
     $student_address = isset($_POST['student_address']) ? $_POST['student_address'] : '';
-
-    
-
-    include "db_guvi.php";
 
     $sql = "SELECT * FROM student WHERE student_email=?";
     $stmt = $conn->prepare($sql);
@@ -97,7 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
             if ($insert->getInsertedCount() == 1) 
             {   
-                $_SESSION['student_email'] = $student_email;
+                session_regenerate_id(true); 
+                $_SESSION['student_email'] = $student_email; 
+                $_SESSION['student_name'] = $student_name; 
                 die(json_encode(array('status' => true)));
             }
             else
