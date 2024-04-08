@@ -1,4 +1,8 @@
 <?php
+include "redisconnect.php";
+
+global $redis;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     header('Access-Control-Allow-Origin: *');
@@ -16,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
         $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']) : '';
         
-
         include "mongo_db.php";
 
         $selectcollection = $database->selectCollection('students');
@@ -24,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
         if ($user_profile) 
         {
+            $redis->hset('ProfileData', $student_email, json_encode($user_profile));
             die(json_encode(array(
                 "student_email" => $user_profile["student_email"], 
                 "student_number" => $user_profile["student_number"], 
@@ -55,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
         include "mongo_db.php";
 
+
         $selectcollection = $database->selectCollection('students');
         
         $user_profile = $selectcollection->findOne(['student_email' => $student_email]);
@@ -84,7 +89,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                     ['student_email' => $student_email],
                     ['$set' => $update_data]
                 );
-    
+
+                $updated_data = $selectcollection->findOne(['student_email' => $student_email]);
+
+                $redis->hset('ProfileData', $student_email, json_encode($updated_data));
+                
                 if ($update_result->getModifiedCount() > 0) {
                     die(json_encode(["status" => true, 'student_name' => $student_name]));
                 } else {

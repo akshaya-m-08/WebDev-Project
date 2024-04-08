@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
     header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+
     function validate($data) 
     {
         $data = trim($data);
@@ -17,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         return $data;
     }
 
+    global $redis;
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']): '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
 
@@ -27,13 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
+    $redis->hset('ProfileData', $student_email, json_encode($row));
+
     if ($row !== null) 
     {
         if (password_verify($student_password, $row['student_password'])) 
         {
-            session_regenerate_id(true); 
-            $_SESSION['student_email'] = $student_email; 
-            $_SESSION['student_name'] = $row["student_name"];
+            // session_regenerate_id(true); 
+            // // $_SESSION['student_email'] = $student_email; 
+            // // $_SESSION['student_name'] = $row["student_name"];
             die(json_encode(array('status' => true, 'student_name' => $row["student_name"])));
         } 
         else 

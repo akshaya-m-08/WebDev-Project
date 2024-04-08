@@ -1,7 +1,5 @@
 <?php
 
-include "redisconnect.php";
-
 include "db_guvi.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
@@ -17,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $data = htmlspecialchars($data);
         return $data;
     }
-
 
     $student_name = isset($_POST['student_name']) ? validate($_POST['student_name']) : '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
@@ -88,9 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
             if ($insert->getInsertedCount() == 1) 
             {   
-                session_regenerate_id(true); 
-                $_SESSION['student_email'] = $student_email; 
-                $_SESSION['student_name'] = $student_name; 
                 die(json_encode(array('status' => true)));
             }
             else
