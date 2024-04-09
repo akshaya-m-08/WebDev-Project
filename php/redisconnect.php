@@ -1,6 +1,5 @@
 <?php
 require '../vendor/autoload.php'; 
-
 class RedisConnect 
 {
     private $redis;
@@ -29,7 +28,6 @@ class RedisConnect
             die("General Error");
         }
     }
-
     public function updateProfileData($student_email, $row) 
     {
         try 
