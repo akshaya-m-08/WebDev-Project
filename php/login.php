@@ -1,4 +1,6 @@
 <?php
+
+include "redisconnect.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     header('Access-Control-Allow-Origin: *');
@@ -25,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    include "redisconnect.php";
+    updateProfileDataInRedis($redis, $student_email, $row);
 
     if ($row !== null) 
     {

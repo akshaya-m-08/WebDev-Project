@@ -1,4 +1,7 @@
 <?php
+
+include "redisconnect.php";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     header('Access-Control-Allow-Origin: *');
@@ -24,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         
         if ($user_profile) 
         {
-            include "redisconnect.php";
+            updateProfileDataInRedis($redis, $student_email, $row);
             die(json_encode(array(
                 "student_email" => $user_profile["student_email"], 
                 "student_number" => $user_profile["student_number"], 
@@ -88,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
                 $row = $selectcollection->findOne(['student_email' => $student_email]);
                 
-                include "redisconnect.php";
+                updateProfileDataInRedis($redis, $student_email, $row);
                 
                 if ($update_result->getModifiedCount() > 0) {
                     die(json_encode(["status" => true, 'student_name' => $student_name]));

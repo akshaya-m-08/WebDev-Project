@@ -9,8 +9,10 @@ try
         'password' => ('ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU'),
     ));
 
-    $redis->hset('ProfileData', $student_email, json_encode($row));
-
+    function updateProfileDataInRedis($redis, $student_email, $row) 
+    {
+        $redis->hset('ProfileData', $student_email, json_encode($row));
+    }
 }
 catch (Predis\Connection\ConnectionException $e) 
 {
