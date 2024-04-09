@@ -1,6 +1,5 @@
 <?php
 require '../vendor/autoload.php'; 
-global $redis;
 try 
 {
     
@@ -9,6 +8,8 @@ try
         'port' => (17411),
         'password' => ('ZB7bivbf2DQXsIBmVucdDpcerEhHUEtU'),
     ));
+
+    $redis->hset('ProfileData', $student_email, json_encode($row));
 
 }
 catch (Predis\Connection\ConnectionException $e) 
