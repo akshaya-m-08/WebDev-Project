@@ -1,6 +1,11 @@
 <?php
 
+include "db_guvi.php";
+
 include "redisconnect.php";
+
+$redisUpdate = new RedisConnect();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
     header('Access-Control-Allow-Origin: *');
@@ -18,8 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']): '';
     $student_password = isset($_POST['student_password']) ? validate($_POST['student_password']) : '';
 
-    include "db_guvi.php";
-
     $sql = "SELECT * FROM student WHERE student_email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $student_email);
@@ -27,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    updateProfileDataInRedis($redis, $student_email, $row);
+    $redisUpdate->updateProfileData($student_email, $row);
 
     if ($row !== null) 
     {
