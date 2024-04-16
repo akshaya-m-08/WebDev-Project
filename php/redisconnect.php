@@ -28,17 +28,55 @@ class RedisConnect
             die("General Error");
         }
     }
-    public function updateProfileData($student_email, $row) 
+    public function saveProfileData($student_email, $row) 
     {
         try 
         {
-            $this->redis->hset('ProfileData', $student_email, json_encode($row));
-        } 
+            if ($this->redis->hexists('ProfileData', $student_email)) 
+            {
+              return; 
+            } 
+            else 
+            {
+              $this->redis->hset('ProfileData', $student_email, json_encode($row));
+            }
+        }
         catch (Exception $e) 
         {
             error_log("Redis Update Error: " . $e->getMessage());
             die("Redis Update Error");
         }
     }
+    public function updateProfileData($student_email, $row) 
+    {
+        try 
+        {
+            $this->redis->hset('ProfileData', $student_email, json_encode($row));
+        }
+        catch (Exception $e) 
+        {
+            error_log("Redis Update Error: " . $e->getMessage());
+            die("Redis Update Error");
+        }
+    }
+    public function getProfileData($student_email) {
+        try 
+        {
+          $data = $this->redis->hget('ProfileData', $student_email);
+          if ($data) 
+          {
+            return json_decode($data, true); 
+          } 
+          else 
+          {
+            return null;
+          }
+        } 
+        catch (Exception $e) 
+        {
+          error_log("Redis Get Error: " . $e->getMessage());
+          die("Redis Get Error");
+        }
+      }
 }
 ?>

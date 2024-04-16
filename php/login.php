@@ -30,13 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    $redisUpdate->updateProfileData($student_email, $row);
+    $redisUpdate->saveProfileData($student_email, $row);
+    $user_profile = $redisUpdate->getProfileData($student_email);
 
     if ($row !== null) 
     {
         if (password_verify($student_password, $row['student_password'])) 
         {
-            die(json_encode(array('status' => true, 'student_name' => $row["student_name"])));
+            die(json_encode(array('status' => true, "student_name" => $user_profile["student_name"])));
         } 
         else 
         {

@@ -22,26 +22,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
         $student_email = isset($_POST['student_email']) ? validate($_POST['student_email']) : '';
 
-        $selectcollection = $database->selectCollection('students');
-        $user_profile = $selectcollection->findOne(['student_email' => $student_email]);
-        $row=$user_profile;
+        $user_profile = $redisUpdate->getProfileData($student_email);
         
         if ($user_profile) 
         {
-            $redisUpdate->updateProfileData($student_email, $row);
-            die(json_encode(array(
-                "student_email" => $user_profile["student_email"], 
-                "student_number" => $user_profile["student_number"], 
-                "student_dob" => $user_profile["student_dob"], 
-                "student_name" => $user_profile["student_name"],
-                "student_address" => $user_profile["student_address"]
-            )));
-        } 
+            $student_address = isset($user_profile["student_address"]) ? $user_profile["student_address"] : "";
+          
+            $profile_data = array(
+              "student_email" => $user_profile["student_email"],
+              "student_number" => $user_profile["student_number"],
+              "student_dob" => $user_profile["student_dob"],
+              "student_name" => $user_profile["student_name"],
+              "student_address" => $student_address,
+            );
+            die(json_encode($profile_data));
+          } 
         else 
         {
             die(json_encode(array("error" => "Profile not found")));
         } 
-        
     }
     if (isset($_POST['update'])) 
     {
@@ -87,14 +86,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                     ['student_email' => $student_email],
                     ['$set' => $update_data]
                 );
-
-                $row = $selectcollection->findOne(['student_email' => $student_email]);
                 
-                $redisUpdate->updateProfileData($student_email, $row);
-                
-                if ($update_result->getModifiedCount() > 0) {
+                if ($update_result->getModifiedCount() > 0) 
+                {
+                    $row = $selectcollection->findOne(['student_email' => $student_email]);
+                    $redisUpdate->updateProfileData($student_email, $row);
                     die(json_encode(["status" => true, 'student_name' => $student_name]));
-                } else {
+                } 
+                else 
+                {
                     die(json_encode(["status" => false, "error" => "Profile Not Updated or Internal Error"]));
                 }
             } 
