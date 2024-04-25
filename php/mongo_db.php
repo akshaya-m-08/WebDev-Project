@@ -8,7 +8,7 @@ $mongopassword = 'Abhi1%40aks';
 $mongoDBName = 'guvi';
 $collectionName = 'students';
 
-$mongoClient = new MongoDB\Client("mongodb+srv://$mongoUser:$mongopassword@ycluster0.ioqdfch.mongodb.net");
+$mongoClient = new MongoDB\Client("mongodb+srv://$mongoUser:$mongopassword@cluster0.s7e4jmk.mongodb.net");
 
 $database = $mongoClient->$mongoDBName;
 
