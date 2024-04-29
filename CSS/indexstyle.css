@@ -21,7 +21,7 @@ nav
 }
 .logo 
 {
-    width: 150px; 
+    width: 250px; 
     height: 100px; 
 }
 .nav-item 
@@ -30,21 +30,21 @@ nav
 }
 .nav-link
 {
-    color:rgb(5, 70, 21);
+    color:#2085C8;
     font-size: x-large;
 }
 /*Hover effect*/
 
 .nav>li>a:focus, .nav>li>a:hover 
 {
-    background-color: rgb(39, 194, 88) !important;
+    background-color: #2085C8 !important;
     color: white;
 }
 /*Check btn*/
 .checkbtn
 {
     font-size: 30px;
-    color:rgb(5, 70, 21);
+    color:#2085C8;
     float: right;
     line-height: 80px;
     margin-right: 20px;
@@ -119,7 +119,7 @@ nav
     a.nav-link:active 
     {
         background: none;
-        color: #0a6f27;
+        color: #2085C8;
     }
 
 }

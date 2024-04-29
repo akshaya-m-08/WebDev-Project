@@ -1,6 +1,6 @@
 <?php
 
-include "db_guvi.php";
+include "db_connect.php";
 
 include "redisconnect.php";
 

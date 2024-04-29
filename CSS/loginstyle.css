@@ -39,7 +39,7 @@
     width: 120%;
     height: 120%;
     transform-style: preserve-3d;
-    box-shadow: 0 5px 15px rgba(25, 93, 37, 0.5);
+    box-shadow: 0 5px 15px #2085C8;
     transition: transform 1s cubic-bezier(0.75, 0, 0.85, 1);
     border-radius: 8px;
 }
@@ -50,7 +50,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgb(234, 251, 239);
+    background: #ffffff;
     backface-visibility: hidden;
     transform-style: preserve-3d;
     perspective: 1500px;
@@ -156,7 +156,7 @@ input[type=date]::placeholder
     padding: 8px 5px;
     margin: 130px 20px;
     font-size: 16px;
-    color: rgb(25, 146, 63);
+    color: #2085C8;
     float: right;
     cursor:pointer;
 }
@@ -185,7 +185,7 @@ input[type=date]::placeholder
     width: 90%;
     font-size: 16px;
     text-align: center;
-    color:  rgb(25, 146, 63);
+    color:  #2085C8;
     cursor: pointer;
 }
 .btn-primary 
@@ -196,7 +196,7 @@ input[type=date]::placeholder
     margin-top: auto;
     padding: 7px;
     color: #eee;
-    background:  rgb(25, 146, 63);
+    background: #2085C8;
     text-align: center;
     font-size: 18px;
     border-radius: 4px;
@@ -218,7 +218,7 @@ input[type=date]::placeholder
 .btn-primary:active,
 .btn-primary:visited
 {
-    background-color:  rgb(67, 210, 112);
+    background-color:  #2085C8;
 
 }
 @media (max-width: 952px)

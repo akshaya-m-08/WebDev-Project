@@ -1,14 +1,14 @@
 
 .card
 {
-    width: 600px;
+    width: 700px;
     height: 450px;
     perspective: 1500px;
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: white;
     text-align: center;
 }
 
@@ -22,23 +22,23 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 48px;
     text-align: center;
-    color:rgb(39, 194, 88);
+    color:#2085C8;
 }
 p 
 {
     text-align: center;
     font-size: 24px;
 }
-p.guvi
+p.abhira
 {
     font-size: 30px;
 }
-.guvi {
+.abhira {
     display: inline-block;
 
 }
-.green {
-    color: green;
+.blue {
+    color: #2085C8;
 }
 .black {
     color: black;
