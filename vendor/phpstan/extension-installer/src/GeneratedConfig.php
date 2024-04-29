@@ -12,7 +12,7 @@ final class GeneratedConfig
 	public const EXTENSIONS = array (
   'phpstan/phpstan-phpunit' => 
   array (
-    'install_path' => 'C:\\xampp\\htdocs\\html\\vendor/phpstan/phpstan-phpunit',
+    'install_path' => 'D:\\Akshaya IT jobs\\Data Science\\AI Ml project\\Web Development Project\\vendor/phpstan/phpstan-phpunit',
     'relative_install_path' => '../../phpstan-phpunit',
     'extra' => 
     array (
@@ -26,7 +26,7 @@ final class GeneratedConfig
   ),
   'phpstan/phpstan-webmozart-assert' => 
   array (
-    'install_path' => 'C:\\xampp\\htdocs\\html\\vendor/phpstan/phpstan-webmozart-assert',
+    'install_path' => 'D:\\Akshaya IT jobs\\Data Science\\AI Ml project\\Web Development Project\\vendor/phpstan/phpstan-webmozart-assert',
     'relative_install_path' => '../../phpstan-webmozart-assert',
     'extra' => 
     array (
@@ -35,7 +35,7 @@ final class GeneratedConfig
         0 => 'extension.neon',
       ),
     ),
-    'version' => '1.2.4',
+    'version' => '1.2.6',
   ),
 );
 

@@ -784,7 +784,6 @@ class AssertTypeSpecifyingExtension implements StaticMethodTypeSpecifyingExtensi
 					return self::createIsNonEmptyStringAndSomethingExprPair($name, [$value]);
 				};
 			}
-
 		}
 
 		return $this->resolvers;
