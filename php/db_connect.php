@@ -1,10 +1,10 @@
 <?php
-$sqlurl = parse_url(getenv("JAWSDB_URL"));
-$servername = "qn66usrj1lwdk1cc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
-$username = "c7vxy08pcs9fuvum";
+$sqlurl = parse_url(getenv("FREESQL_URL"));
+$servername = "sql6.freesqldatabase.com";
+$username = "sql6702344";
 $userport = 3306;
-$password = "v10q2u5vkxnoyen3";
-$database = "ita2g6ato5l2k3my";
+$password = "fML1122Z7z";
+$database = "sql6702344";
 
 $active_group = 'default';
 $query_builder = TRUE;
